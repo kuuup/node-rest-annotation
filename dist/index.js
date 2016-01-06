@@ -90,16 +90,26 @@ var bindServices = exports.bindServices = function bindServices(express) {
                     });
 
                     if (missingParams.length === 0) {
-                        res.send(service.method.apply(instances.get(service.service), paramArray));
-                    } else {
-                        res.send({
-                            error: 'Parameter missing!',
-                            value: missingParams
+
+                        Promise.all([service.method.apply(instances.get(service.service), paramArray)]).then(function (result) {
+                            return res.send(result[0]);
                         });
-                    }
+
+                        //res.send(service.method.apply(instances.get(service.service), paramArray));
+                    } else {
+                            res.send({
+                                error: 'Parameter missing!',
+                                value: missingParams
+                            });
+                        }
                 })();
             } else {
-                res.send(service.method.call(instances.get(service.service)));
+
+                Promise.all([service.method.call(instances.get(service.service))]).then(function (result) {
+                    return res.send(result[0]);
+                });
+
+                //res.send(service.method.call(instances.get(service.service)));
             }
         });
     });

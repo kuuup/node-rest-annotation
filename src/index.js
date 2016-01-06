@@ -51,7 +51,11 @@ export const bindServices = (express, type=undefined)  => {
                 });
 
                 if (missingParams.length === 0) {
-                    res.send(service.method.apply(instances.get(service.service), paramArray));
+                    
+                    Promise.all([service.method.apply(instances.get(service.service), paramArray)])
+                        .then(result => res.send(result[0]));
+                    
+                    //res.send(service.method.apply(instances.get(service.service), paramArray));
                 }
                 else {
                     res.send({
@@ -62,7 +66,11 @@ export const bindServices = (express, type=undefined)  => {
 
             }
             else {
-                res.send(service.method.call(instances.get(service.service)));
+                
+                Promise.all([service.method.call(instances.get(service.service))])
+                        .then(result => res.send(result[0]));
+                        
+                //res.send(service.method.call(instances.get(service.service)));
             }
 
         });
