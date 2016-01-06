@@ -1,7 +1,7 @@
 {
   "name": "node-rest-annotation",
-  "description": "Create REST endpoints by annotating methods",
-  "version": "1.0.1",
+  "description": "Create simple REST endpoints",
+  "version": "1.0.2",
   "private": false,
   "main": "dist/index.js",
   "scripts": {
@@ -19,11 +19,11 @@
     "url": "https://github.com/kuuup/node-rest-annotation/issues"
   },
   "devDependencies": {
-    "babel": "latest",
-    "babel-core": "^6.3.26",
+    "babel": "^6.3.26",
     "babel-cli": "^6.3.17",
-    "babel-plugin-transform-decorators-legacy": "latest",
-    "babel-preset-es2015": "latest",
-    "babel-preset-stage-0": "latest"
+    "babel-core": "^6.3.26",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13"
   }
 }
