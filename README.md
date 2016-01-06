@@ -55,7 +55,8 @@ export default class MyClass {
 
 ```
 
-Start your server and open [http://localhost:3000/api/print](http://localhost:3000/api/print) in your browser to see your API summary.
+- Start your server and open [http://localhost:3000/api/print](http://localhost:3000/api/print) in your browser to see your API summary.
+- Call a method [http://localhost:3000/myclass/method2?b=1&a={"foo":"bar"}](http://localhost:3000/myclass/method2?b=1&a={"foo":"bar"})
 
 ### Requirements
 Be sure to have your environment configured for es7. In my case I use Babel 6 and this .babelrc:
