@@ -113,7 +113,7 @@ var Api = (_class = (function () {
         value: function createApi() {
             var api = {};
 
-            services.map(function (method) {
+            services.forEach(function (method) {
                 api[method.service] = api[method.service] || {};
                 api[method.service][method.name] = {
                     url: method.url,

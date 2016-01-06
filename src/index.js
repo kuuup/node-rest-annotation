@@ -72,7 +72,7 @@ class Api {
     createApi() {
         const api = {};
 
-        services.map(method => {
+        services.forEach(method => {
             api[method.service] = api[method.service] || {};
             api[method.service][method.name] = {
                 url: method.url,
