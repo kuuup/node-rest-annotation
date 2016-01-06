@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kuuup/rest-annotation.git"
+    "url": "https://github.com/kuuup/node-rest-annotation.git"
   },
   "author": {
     "name": "Peter Kupietz"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kuuup/rest-annotation/issues"
+    "url": "https://github.com/kuuup/node-rest-annotation/issues"
   },
   "devDependencies": {
     "babel": "latest",
