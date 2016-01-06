@@ -18,7 +18,9 @@ const app = express();
 // Bind all remote methods
 bindServices(app);
 
-app.use(express.static(__dirname + '/dist'));
+// Do more with your server
+// app.use(express.static(__dirname + '/dist'));
+
 app.listen(3000);
 
 console.log('Listening on port 3000...'); 
