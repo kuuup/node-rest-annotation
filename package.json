@@ -1,0 +1,29 @@
+{
+  "name": "node-rest-annotation",
+  "description": "Create REST endpoints by annotating methods",
+  "version": "1.0.0",
+  "private": false,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src/index.js --out-file dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuuup/rest-annotation.git"
+  },
+  "author": {
+    "name": "Peter Kupietz"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuuup/rest-annotation/issues"
+  },
+  "devDependencies": {
+    "babel": "latest",
+    "babel-core": "^6.3.26",
+    "babel-cli": "^6.3.17",
+    "babel-plugin-transform-decorators-legacy": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-stage-0": "latest"
+  }
+}
