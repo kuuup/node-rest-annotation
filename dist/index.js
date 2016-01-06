@@ -71,6 +71,8 @@ var restApi = exports.restApi = function restApi(target, key, descriptor) {
 };
 
 var bindServices = exports.bindServices = function bindServices(express) {
+    var type = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
     services.forEach(function (service) {
         express.get(service.url, function (req, res) {
 
@@ -81,7 +83,7 @@ var bindServices = exports.bindServices = function bindServices(express) {
 
                     service.params.forEach(function (param) {
                         if (req.query[param]) {
-                            paramArray.push(req.query[param]);
+                            if (type && type === 'json') paramArray.push(JSON.parse(req.query[param]));else paramArray.push(req.query[param]);
                         } else {
                             missingParams.push(param);
                         }

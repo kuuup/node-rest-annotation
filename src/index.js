@@ -30,7 +30,7 @@ export const restApi = (target, key, descriptor) => {
     });
 };
 
-export const bindServices = express => {
+export const bindServices = (express, type=undefined)  => {
     services.forEach(service => {
         express.get(service.url, (req, res) => {
 
@@ -40,7 +40,10 @@ export const bindServices = express => {
 
                 service.params.forEach(param => {
                     if (req.query[param]) {
-                        paramArray.push(req.query[param]);
+                        if(type && type === 'json')
+                            paramArray.push(JSON.parse(req.query[param]));
+                        else
+                            paramArray.push(req.query[param]);
                     }
                     else {
                         missingParams.push(param);

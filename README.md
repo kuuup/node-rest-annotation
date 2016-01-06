@@ -16,7 +16,9 @@ import './myclass';
 const app = express();
 
 // Bind all remote methods
-bindServices(app);
+// If 'json' is set input parameters will parsed.
+// Leave this empty and you'll get strings.
+bindServices(app, 'json');
 
 // Do more with your server
 // app.use(express.static(__dirname + '/dist'));
