@@ -39,7 +39,7 @@ export default class MyClass {
 
     @restApi
     method1(a) {
-        return {a: a} ;
+        return Promise.resolve([a]) ;
     }
     
     @restApi
@@ -47,9 +47,10 @@ export default class MyClass {
         return {a: a, b: b};
     }
     
+    //If you have a parameter called `req` in your annotated method it will contain the server request object.
     @restApi
-    method3() {
-        return('no params');
+    method3(req) {
+        return req.headers;
     }
 }
 

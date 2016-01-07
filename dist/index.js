@@ -82,34 +82,33 @@ var bindServices = exports.bindServices = function bindServices(express) {
                     var missingParams = [];
 
                     service.params.forEach(function (param) {
-                        if (req.query[param]) {
-                            if (type && type === 'json') paramArray.push(JSON.parse(req.query[param]));else paramArray.push(req.query[param]);
+                        if (param === 'req') {
+                            paramArray.push(req);
                         } else {
-                            missingParams.push(param);
+                            if (req.query[param]) {
+                                if (type && type === 'json') paramArray.push(JSON.parse(req.query[param]));else paramArray.push(req.query[param]);
+                            } else {
+                                missingParams.push(param);
+                            }
                         }
                     });
 
                     if (missingParams.length === 0) {
-
                         Promise.all([service.method.apply(instances.get(service.service), paramArray)]).then(function (result) {
                             return res.send(result[0]);
                         });
-
-                        //res.send(service.method.apply(instances.get(service.service), paramArray));
                     } else {
-                            res.send({
-                                error: 'Parameter missing!',
-                                value: missingParams
-                            });
-                        }
+                        res.send({
+                            error: 'Parameter missing!',
+                            value: missingParams
+                        });
+                    }
                 })();
             } else {
 
                 Promise.all([service.method.call(instances.get(service.service))]).then(function (result) {
                     return res.send(result[0]);
                 });
-
-                //res.send(service.method.call(instances.get(service.service)));
             }
         });
     });

@@ -39,23 +39,24 @@ export const bindServices = (express, type=undefined)  => {
                 const missingParams = [];
 
                 service.params.forEach(param => {
-                    if (req.query[param]) {
-                        if(type && type === 'json')
-                            paramArray.push(JSON.parse(req.query[param]));
-                        else
-                            paramArray.push(req.query[param]);
-                    }
-                    else {
-                        missingParams.push(param);
+                    if(param === 'req') {
+                        paramArray.push(req)
+                    } else {
+                        if (req.query[param]) {
+                            if(type && type === 'json')
+                                paramArray.push(JSON.parse(req.query[param]));
+                            else
+                                paramArray.push(req.query[param]);
+                        }
+                        else {
+                            missingParams.push(param);
+                        }
                     }
                 });
 
                 if (missingParams.length === 0) {
-                    
                     Promise.all([service.method.apply(instances.get(service.service), paramArray)])
                         .then(result => res.send(result[0]));
-                    
-                    //res.send(service.method.apply(instances.get(service.service), paramArray));
                 }
                 else {
                     res.send({
@@ -69,8 +70,6 @@ export const bindServices = (express, type=undefined)  => {
                 
                 Promise.all([service.method.call(instances.get(service.service))])
                         .then(result => res.send(result[0]));
-                        
-                //res.send(service.method.call(instances.get(service.service)));
             }
 
         });
